@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nikah Invitation — Fariha Ahammed & Arib Abrar Nasif</title>
+  <style>
+    :root {
+      --bg-ivory: #f8f5ef;
+      --bg-pearl: #fdfbf7;
+      --card-white: #ffffff;
+      --gold-primary: #c5a059;
+      --gold-light: #e4cfa3;
+      --gold-dark: #9c7935;
+      --burgundy: #5e1928;
+      --burgundy-hover: #47111d;
+      --text-dark: #2c241d;
+      --text-muted: #6c6156;
+      --border-gold: rgba(197, 160, 89, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-ivory);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .serif {
+      font-family: Georgia, "Times New Roman", Times, serif;
+    }
+
+    .arabic {
+      font-family: "Traditional Arabic", "Geeza Pro", "Amiri", Georgia, serif;
+      direction: rtl;
+    }
+
+    /* ================= COVER SCREEN (PAGE 1 - NO SCROLL) ================= */
+    #cover-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #fdfbf7 0%, #efe8da 100%);
+      perspective: 1600px;
+      overflow: hidden;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #cover-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .cover-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+    }
+
+    .curtain-panel {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      background: linear-gradient(135deg, #f9f6f0 0%, #ede5d5 50%, #f5efe4 100%);
+      box-shadow: inset 0 0 60px rgba(156, 121, 53, 0.08);
+      transition: transform 1.35s cubic-bezier(0.77, 0, 0.175, 1);
+      z-index: 2;
+    }
+
+    .curtain-panel::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      pointer-events: none;
+    }
+
+    .curtain-left {
+      left: 0;
+      transform-origin: left center;
+      border-right: 1px solid rgba(197, 160, 89, 0.5);
+    }
+
+    .curtain-left::before {
+      border-right: none;
+      border-radius: 16px 0 0 16px;
+    }
+
+    .curtain-right {
+      right: 0;
+      transform-origin: right center;
+      border-left: 1px solid rgba(197, 160, 89, 0.5);
+    }
+
+    .curtain-right::before {
+      border-left: none;
+      border-radius: 0 16px 16px 0;
+    }
+
+    #cover-screen.opening .curtain-left {
+      transform: rotateY(-105deg) translateX(-12%);
+    }
+
+    #cover-screen.opening .curtain-right {
+      transform: rotateY(105deg) translateX(12%);
+    }
+
+    .skip-btn {
+      position: absolute;
+      top: 26px;
+      right: 26px;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-dark);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: all 0.25s ease;
+    }
+
+    .skip-btn:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .cover-center-ui {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    #cover-screen.opening .cover-center-ui {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+
+    .crest-wrapper {
+      position: relative;
+      width: 148px;
+      height: 148px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .crest-halo {
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      animation: pulseHalo 3s infinite ease-in-out;
+    }
+
+    .crest-halo-outer {
+      position: absolute;
+      inset: -28px;
+      border-radius: 50%;
+      border: 1px dashed rgba(197, 160, 89, 0.35);
+      animation: spinSlow 28s linear infinite;
+    }
+
+    @keyframes pulseHalo {
+      0%, 100% { transform: scale(0.96); opacity: 0.55; }
+      50% { transform: scale(1.06); opacity: 1; }
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .crest-medallion {
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f7f1e3 100%);
+      border: 4px solid var(--gold-primary);
+      box-shadow: 0 12px 32px rgba(156, 121, 53, 0.22), inset 0 0 0 3px #fff, inset 0 0 0 5px var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .crest-initials {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--gold-dark);
+      letter-spacing: 2px;
+    }
+
+    .open-btn {
+      background: linear-gradient(135deg, #d7b672 0%, #b99144 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(156, 121, 53, 0.32);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .open-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 32px rgba(156, 121, 53, 0.42);
+    }
+
+    /* ================= MAIN PAGE (PAGE 2 - SCROLLABLE) ================= */
+    #main-invitation {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+
+    #main-invitation.visible {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Sticky Navbar */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(253, 251, 247, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 12px 20px;
+    }
+
+    .nav-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-pill {
+      background: #ffffff;
+      border: 1px solid var(--border-gold);
+      color: var(--gold-dark);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-pill:hover {
+      background: var(--bg-ivory);
+    }
+
+    /* Hero Pavilion Section */
+    .hero-section {
+      position: relative;
+      padding: 28px 18px 46px;
+      background: linear-gradient(180deg, #f3ede0 0%, #fbf8f2 65%, #f8f5ef 100%);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .arch-backdrop {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .chandelier-svg {
+      width: 110px;
+      height: 125px;
+      margin: 0 auto -12px;
+      display: block;
+      transform-origin: top center;
+      animation: swayChandelier 5.5s ease-in-out infinite;
+    }
+
+    @keyframes swayChandelier {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+
+    /* Double-bordered Luxury Card */
+    .luxury-card {
+      background: var(--card-white);
+      border-radius: 24px;
+      padding: 8px;
+      box-shadow: 0 18px 45px rgba(44, 36, 29, 0.06);
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      max-width: 580px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .luxury-card-inner {
+      border: 1.5px solid var(--border-gold);
+      border-radius: 18px;
+      padding: 32px 22px;
+      position: relative;
+      background: linear-gradient(180deg, #ffffff 0%, #fdfbf7 100%);
+    }
+
+    .corner-ornament {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      color: var(--gold-primary);
+      opacity: 0.75;
+    }
+    .corner-tl { top: 10px; left: 10px; }
+    .corner-tr { top: 10px; right: 10px; transform: scaleX(-1); }
+    .corner-bl { bottom: 10px; left: 10px; transform: scaleY(-1); }
+    .corner-br { bottom: 10px; right: 10px; transform: scale(-1); }
+
+    .hero-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--gold-dark);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .couple-hero-names {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 6vw, 42px);
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.15;
+    }
+
+    .hero-amp {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-style: italic;
+      color: var(--gold-primary);
+      margin: 6px 0;
+    }
+
+    .arabic-pill-box {
+      margin: 22px auto 24px;
+      background: #faf7f0;
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      border-radius: 14px;
+      padding: 12px 18px;
+      max-width: 440px;
+    }
+
+    .arabic-dua-text {
+      font-size: 21px;
+      color: var(--gold-dark);
+      line-height: 1.7;
+    }
+
+    .burgundy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--burgundy);
+      color: #ffffff;
+      text-decoration: none;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(94, 25, 40, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .burgundy-btn:hover {
+      background: var(--burgundy-hover);
+      transform: translateY(-2px);
+    }
+
+    .scroll-cue {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+    }
+
+    .mouse-icon {
+      width: 20px;
+      height: 32px;
+      border: 1.5px solid var(--gold-primary);
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .mouse-wheel {
+      width: 3px;
+      height: 6px;
+      background: var(--gold-dark);
+      border-radius: 2px;
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scrollWheel 1.8s infinite;
+    }
+
+    @keyframes scrollWheel {
+      0% { opacity: 1; top: 6px; }
+      100% { opacity: 0; top: 18px; }
+    }
+
+    /* Section Containers */
+    .section-block {
+      padding: 36px 18px;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid var(--border-gold);
+      color: var(--gold-dark);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      padding: 6px 16px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-heading {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(26px, 5vw, 34px);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .botanical-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 18px auto 22px;
+    }
+
+    .divider-line {
+      height: 1px;
+      width: 64px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    }
+
+    .body-copy {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .family-signoff {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(197, 160, 89, 0.25);
+    }
+
+    .signoff-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gold-dark);
+      margin-bottom: 6px;
+    }
+
+    .signoff-names {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* Couple Arched Cards */
+    .couple-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      position: relative;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 520px) {
+      .couple-grid {
+        grid-template-columns: 1fr;
+      }
+      .center-heart-badge {
+        display: none !important;
+      }
+    }
+
+    .couple-card {
+      background: #ffffff;
+      border: 1px solid var(--border-gold);
+      border-radius: 20px;
+      padding: 18px 14px 22px;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(44, 36, 29, 0.04);
+    }
+
+    .arch-frame {
+      width: 100%;
+      max-width: 175px;
+      height: 205px;
+      margin: 0 auto 16px;
+      border-radius: 95px 95px 14px 14px;
+      border: 1.5px solid var(--gold-primary);
+      background: linear-gradient(180deg, #faf6ee 0%, #f1e9d8 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: 12px;
+    }
+
+    .center-heart-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1.5px solid var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--burgundy);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      z-index: 5;
+      animation: heartbeat 2.4s infinite ease-in-out;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.12); }
+    }
+
+    .role-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gold-dark);
+      margin-bottom: 4px;
+    }
+
+    .couple-full-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    /* Timeline */
+    .timeline-list {
+      position: relative;
+      padding-left: 36px;
+      text-align: left;
+      margin-top: 24px;
+    }
+
+    .timeline-list::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 12px;
+      bottom: 12px;
+      width: 1.5px;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold-primary), var(--gold-light));
+    }
+
+    .timeline-item {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 18px rgba(44, 36, 29, 0.03);
+    }
+
+    .timeline-item.highlight {
+      border: 1.5px solid var(--gold-primary);
+      background: linear-gradient(180deg, #ffffff 0%, #fdf9f0 100%);
+      box-shadow: 0 10px 26px rgba(197, 160, 89, 0.14);
+    }
+
+    .timeline-node {
+      position: absolute;
+      left: -34px;
+      top: 18px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1.5px solid var(--gold-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--gold-dark);
+    }
+
+    .timeline-item.highlight .timeline-node {
+      background: var(--burgundy);
+      border-color: var(--burgundy);
+      color: #ffffff;
+    }
+
+    .timeline-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .time-text {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: 0.05em;
+    }
+
+    .status-pill {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      padding: 3px 9px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .status-tentative {
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-dark);
+      background: #fdfbf7;
+    }
+
+    .status-confirmed {
+      background: var(--burgundy);
+      color: #ffffff;
+    }
+
+    .event-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .event-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Countdown */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 440px;
+      margin: 20px auto;
+    }
+
+    .count-box {
+      background: #ffffff;
+      border: 1.5px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 14px 8px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(44, 36, 29, 0.04);
+    }
+
+    .count-num {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--burgundy);
+      line-height: 1;
+    }
+
+    .count-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold-dark);
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    /* Venue & Map */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .outline-gold-btn {
+      background: #ffffff;
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-dark);
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .outline-gold-btn:hover {
+      background: var(--bg-ivory);
+    }
+
+    .venue-box {
+      margin-top: 20px;
+      background: #faf7f0;
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--text-dark);
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 2000;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= PAGE 1: OPENING COVER ================= -->
+  <section id="cover-screen" aria-label="Opening Wedding Invitation Cover">
+    <button class="skip-btn" onclick="openInvitation()">SKIP INTRO</button>
+
+    <div class="cover-stage">
+      <div class="curtain-panel curtain-left"></div>
+      <div class="curtain-panel curtain-right"></div>
+
+      <div class="cover-center-ui">
+        <div class="crest-wrapper">
+          <div class="crest-halo-outer"></div>
+          <div class="crest-halo"></div>
+          <div class="crest-medallion">
+            <span class="crest-initials">F &amp; N</span>
+          </div>
+        </div>
+
+        <button class="open-btn" onclick="openInvitation()">
+          &#10024; TAP TO OPEN INVITATION
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 2: MAIN SCROLLABLE INVITATION ================= -->
+  <main id="main-invitation">
+    <!-- Sticky Top Bar -->
+    <header class="top-nav">
+      <div class="nav-inner">
+        <div class="nav-brand">
+          <span style="color: var(--gold-primary);">&#10070;</span>
+          <span>Fariha &amp; Arib</span>
+        </div>
+        <div class="nav-actions">
+          <button class="nav-pill" onclick="closeInvitation()">&larr; Cover</button>
+          <a href="#venue-section" class="nav-pill" style="text-decoration:none;">Venue</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Section 1: Hero Pavilion -->
+    <section class="hero-section">
+      <div class="arch-backdrop">
+        <svg class="chandelier-svg" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="0" x2="60" y2="34" stroke="#C5A059" stroke-width="1.5"/>
+          <circle cx="60" cy="36" r="4" stroke="#C5A059" stroke-width="1.5" fill="#FDFBF7"/>
+          <polygon points="60,40 88,68 60,96 32,68" stroke="#C5A059" stroke-width="1.5" fill="rgba(255,255,255,0.65)"/>
+          <polygon points="60,48 80,68 60,88 40,68" stroke="#9C7935" stroke-width="1"/>
+          <line x1="32" y1="68" x2="88" y2="68" stroke="#C5A059" stroke-width="1"/>
+          <line x1="60" y1="96" x2="60" y2="116" stroke="#C5A059" stroke-width="1.5"/>
+          <polygon points="60,116 65,123 60,130 55,123" fill="#C5A059"/>
+        </svg>
+
+        <div class="luxury-card">
+          <div class="luxury-card-inner">
+            <svg class="corner-ornament corner-tl" viewBox="0 0 24 24" fill="currentColor"><path d="M2 2h10v2H4v8H2V2zm4 4h6v2H8v4H6V6z"/></svg>
+            <svg class="corner-ornament corner-tr" viewBox="0 0 24 24" fill="currentColor"><path d="M2 2h10v2H4v8H2V2zm4 4h6v2H8v4H6V6z"/></svg>
+            <svg class="corner-ornament corner-bl" viewBox="0 0 24 24" fill="currentColor"><path d="M2 2h10v2H4v8H2V2zm4 4h6v2H8v4H6V6z"/></svg>
+            <svg class="corner-ornament corner-br" viewBox="0 0 24 24" fill="currentColor"><path d="M2 2h10v2H4v8H2V2zm4 4h6v2H8v4H6V6z"/></svg>
+
+            <p class="hero-kicker">&#9884; Wedding Invitation &#9884;</p>
+            <h1 class="couple-hero-names">Fariha Ahammed</h1>
+            <div class="hero-amp">&amp;</div>
+            <h1 class="couple-hero-names">Arib Abrar Nasif</h1>
+
+            <div class="arabic-pill-box">
+              <p class="arabic arabic-dua-text">
+                بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+              </p>
+            </div>
+
+            <a href="#invitation-section" class="burgundy-btn">
+              &bull;&bull;&bull; VIEW EVENT DETAILS &darr; &bull;&bull;&bull;
+            </a>
+          </div>
+        </div>
+
+        <div class="scroll-cue">
+          <span>SCROLL TO CELEBRATE</span>
+          <div class="mouse-icon"><div class="mouse-wheel"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Bismillah Invitation Card -->
+    <section id="invitation-section" class="section-block reveal">
+      <div class="luxury-card">
+        <div class="luxury-card-inner" style="text-align: center;">
+          <div class="pill-badge">&#10022; Invitation &#10022;</div>
+          <h2 class="section-heading">In the Name of Allah, the Most Merciful</h2>
+
+          <div class="botanical-divider">
+            <span class="divider-line"></span>
+            <span style="color: var(--gold-primary);">&#10087;</span>
+            <span class="divider-line"></span>
+          </div>
+
+          <p class="body-copy">
+            With hearts overflowing with gratitude to Almighty Allah, the families of
+            <strong>Fariha Ahammed</strong> and <strong>Arib Abrar Nasif</strong> joyfully invite you to witness
+            and bless the sacred Nikah of their beloved children. May your presence, warm smiles,
+            and sincere duas grace this milestone as two lives begin a shared journey of faith,
+            kindness, and lifelong companionship.
+          </p>
+
+          <div class="family-signoff">
+            <div class="signoff-label">WITH SINCERE DUAS &amp; WARMEST REGARDS</div>
+            <div class="signoff-names">The Families of Fariha &amp; Arib</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: The Happy Couple -->
+    <section class="section-block reveal" style="text-align: center;">
+      <div class="pill-badge">&#10022; The Happy Couple &#10022;</div>
+      <h2 class="section-heading">Fariha &amp; Arib</h2>
+      <p class="body-copy">
+        Two hearts guided together by Allah’s wisdom, stepping into a lifetime of devotion, patience, and shared grace.
+      </p>
+
+      <div class="botanical-divider">
+        <span class="divider-line"></span>
+        <span style="color: var(--gold-primary);">&#10087;</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <div class="couple-grid">
+        <!-- Bride Card -->
+        <div class="couple-card">
+          <div class="arch-frame">
+            <svg width="130" height="175" viewBox="0 0 130 175" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M35 175C35 130 45 95 65 95C85 95 95 130 95 175H35Z" fill="#E8D8B9" stroke="#C5A059" stroke-width="1.5"/>
+              <path d="M42 52C42 35 52 24 65 24C78 24 88 35 88 52L98 155H32L42 52Z" fill="rgba(255,255,255,0.65)" stroke="#C5A059" stroke-width="1.2"/>
+              <circle cx="65" cy="54" r="16" fill="#F6E5D4" stroke="#C5A059" stroke-width="1.2"/>
+              <path d="M53 45C58 40 72 40 77 45" stroke="#9C7935" stroke-width="1.5"/>
+              <circle cx="65" cy="40" r="2.5" fill="#C5A059"/>
+              <path d="M55 76C60 82 70 82 75 76" stroke="#C5A059" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="role-label">THE BRIDE</div>
+          <div class="couple-full-name">Fariha Ahammed</div>
+        </div>
+
+        <div class="center-heart-badge">&hearts;</div>
+
+        <!-- Groom Card -->
+        <div class="couple-card">
+          <div class="arch-frame">
+            <svg width="130" height="175" viewBox="0 0 130 175" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M38 175V108C38 94 49 86 65 86C81 86 92 94 92 108V175H38Z" fill="#F5EFE2" stroke="#C5A059" stroke-width="1.5"/>
+              <line x1="65" y1="86" x2="65" y2="175" stroke="#C5A059" stroke-width="1.2"/>
+              <path d="M46 88L78 165" stroke="#D7B672" stroke-width="6" stroke-linecap="round" opacity="0.65"/>
+              <circle cx="65" cy="54" r="16" fill="#F2DEC9" stroke="#C5A059" stroke-width="1.2"/>
+              <path d="M47 46C47 32 55 23 65 23C75 23 83 32 83 46H47Z" fill="#E6D2AC" stroke="#9C7935" stroke-width="1.3"/>
+              <circle cx="65" cy="31" r="3" fill="#9C7935"/>
+            </svg>
+          </div>
+          <div class="role-label">THE GROOM</div>
+          <div class="couple-full-name">Arib Abrar Nasif</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 20px; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--gold-dark);">
+        &hearts; UNITED IN THE BLESSED BOND OF NIKAH &hearts;
+      </p>
+    </section>
+
+    <!-- Section 4: The Holy Quran -->
+    <section class="section-block reveal">
+      <div class="luxury-card">
+        <div class="luxury-card-inner" style="text-align: center;">
+          <div class="pill-badge">&#10022; The Holy Quran &#10022;</div>
+
+          <p class="arabic" style="font-size: 24px; line-height: 1.9; color: var(--text-dark); margin: 12px 0;">
+            وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+          </p>
+
+          <div class="botanical-divider">
+            <span class="divider-line"></span>
+            <span style="color: var(--gold-primary);">&#10087;</span>
+            <span class="divider-line"></span>
+          </div>
+
+          <p class="serif" style="font-size: 19px; font-style: italic; color: var(--text-muted); line-height: 1.65;">
+            “And among His signs is that He created for you spouses from among yourselves so that you may find peace with them. And He placed love and mercy between you.”
+          </p>
+
+          <p style="margin-top: 16px; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: var(--gold-dark);">
+            — SURAH AR-RUM &middot; 30:21 —
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Wedding Day Timeline -->
+    <section class="section-block reveal" style="text-align: center;">
+      <div class="pill-badge">&#10022; Wedding Day Timeline &#10022;</div>
+      <h2 class="section-heading">A Day of Grace &amp; Blessings</h2>
+      <p style="font-size: 13px; font-weight: 600; color: var(--gold-dark);">Saturday, 26 December 2026</p>
+
+      <div class="timeline-list">
+        <div class="timeline-item">
+          <div class="timeline-node">&#9202;</div>
+          <div class="timeline-meta">
+            <span class="time-text">12:00 PM</span>
+            <span class="status-pill status-tentative">Tentative</span>
+          </div>
+          <div class="event-title">Guest Arrival</div>
+          <div class="event-desc">Guests and family members arrive at Shefali Convention Center and are warmly welcomed.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node">&#9770;</div>
+          <div class="timeline-meta">
+            <span class="time-text">1:00 PM – 1:45 PM</span>
+            <span class="status-pill status-tentative">Tentative</span>
+          </div>
+          <div class="event-title">Zuhr Prayer</div>
+          <div class="event-desc">Time for afternoon congregational prayers before the ceremony begins.</div>
+        </div>
+
+        <div class="timeline-item highlight">
+          <div class="timeline-node">&#10022;</div>
+          <div class="timeline-meta">
+            <span class="time-text">2:00 PM</span>
+            <span class="status-pill status-confirmed">Confirmed</span>
+          </div>
+          <div class="event-title">Nikah Ceremony</div>
+          <div class="event-desc">The sacred Nikah ceremony of Fariha Ahammed and Arib Abrar Nasif.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node">&#10047;</div>
+          <div class="timeline-meta">
+            <span class="time-text">2:30 PM</span>
+            <span class="status-pill status-tentative">Tentative</span>
+          </div>
+          <div class="event-title">Wedding Lunch</div>
+          <div class="event-desc">Traditional celebratory feast served for family members and honored guests.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-node">&#10024;</div>
+          <div class="timeline-meta">
+            <span class="time-text">3:30 PM</span>
+            <span class="status-pill status-tentative">Tentative</span>
+          </div>
+          <div class="event-title">Duas &amp; Family Gathering</div>
+          <div class="event-desc">A cherished time to offer prayers, blessings, and warm wishes to the newlyweds.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Ceremony Venue Card -->
+    <section class="section-block reveal">
+      <div class="luxury-card">
+        <div class="luxury-card-inner" style="text-align: center;">
+          <div class="signoff-label">CEREMONY VENUE</div>
+          <h3 class="section-heading" style="margin-bottom: 6px;">Shefali Convention Center (Hotel Upohar)</h3>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 18px;">
+            Santahar, Bogura, Bangladesh
+          </p>
+          <button class="burgundy-btn" onclick="downloadCalendar()">
+            ADD TO CALENDAR (.ICS)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Live Countdown -->
+    <section class="section-block reveal" style="text-align: center;">
+      <div class="pill-badge">&#10022; Countdown &#10022;</div>
+      <h2 class="section-heading">Counting Down to the Blessed Day</h2>
+      <p style="font-size: 13px; color: var(--text-muted);">Saturday, 26 December 2026 &middot; 2:00 PM</p>
+
+      <div class="countdown-grid">
+        <div class="count-box">
+          <div class="count-num" id="cd-days">00</div>
+          <div class="count-label">Days</div>
+        </div>
+        <div class="count-box">
+          <div class="count-num" id="cd-hours">00</div>
+          <div class="count-label">Hours</div>
+        </div>
+        <div class="count-box">
+          <div class="count-num" id="cd-mins">00</div>
+          <div class="count-label">Minutes</div>
+        </div>
+        <div class="count-box">
+          <div class="count-num" id="cd-secs">00</div>
+          <div class="count-label">Seconds</div>
+        </div>
+      </div>
+
+      <div class="pill-badge" style="margin-top: 8px;">&#10024; Alhamdulillah &middot; InshaAllah &#10024;</div>
+    </section>
+
+    <!-- Section 8: Venue & Location -->
+    <section id="venue-section" class="section-block reveal">
+      <div class="luxury-card">
+        <div class="luxury-card-inner" style="text-align: center;">
+          <div class="pill-badge">&#10022; Venue &amp; Location &#10022;</div>
+          <h3 class="section-heading">Shefali Convention Center (Hotel Upohar)</h3>
+          <p class="body-copy" style="font-size: 14px;">
+            RX5Q+P97, Santahar - Bogra Rd, Santahar Pouroshova, Bangladesh
+          </p>
+
+          <div class="venue-box">
+            <div class="signoff-label">PLUS CODE &amp; LANDMARK</div>
+            <p style="font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px;">
+              RX5Q+P97 &middot; Santahar - Bogra Road
+            </p>
+            <p style="font-size: 13px; color: var(--text-muted);">
+              On-site guest parking is available at Hotel Upohar / Shefali Convention Center.
+            </p>
+          </div>
+
+          <div class="btn-row">
+            <button class="outline-gold-btn" onclick="copyVenueAddress()">Copy Location Address</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 9: Closing Prayer & Footer -->
+    <section class="section-block reveal" style="padding-bottom: 60px; text-align: center;">
+      <div class="luxury-card">
+        <div class="luxury-card-inner">
+          <div class="signoff-label">CLOSING PRAYER</div>
+          <p class="serif" style="font-size: 20px; font-style: italic; color: var(--text-dark); line-height: 1.7; margin: 12px 0;">
+            “O Allah, unite their hearts in pure love and tranquility, adorn their home with mercy, patience, and abundant barakah, and make them a source of peace and righteousness for one another in this world and the Hereafter. Ameen.”
+          </p>
+
+          <div class="botanical-divider">
+            <span class="divider-line"></span>
+            <span style="color: var(--gold-primary);">&#10087;</span>
+            <span class="divider-line"></span>
+          </div>
+
+          <p class="body-copy" style="font-size: 14px;">
+            Your presence is the greatest gift we could ask for. Thank you for celebrating this cherished day with us and keeping our new beginning in your prayers.
+          </p>
+
+          <div class="family-signoff">
+            <div class="signoff-label">WITH LOVE</div>
+            <div class="couple-hero-names" style="font-size: 32px;">Fariha &amp; Arib</div>
+            <p style="margin-top: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; color: var(--gold-dark);">
+              SATURDAY, 26 DECEMBER 2026 &middot; SANTAHAR, BOGURA
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top: 24px;">
+        <button class="burgundy-btn" onclick="shareInvitation()">SHARE INVITATION</button>
+      </div>
+      <div style="margin-top: 16px;">
+        <button class="nav-pill" onclick="closeInvitation()">&#8635; View Opening Cover Again</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast">Copied to clipboard!</div>
+
+  <script>
+    const coverScreen = document.getElementById('cover-screen');
+    const mainInvitation = document.getElementById('main-invitation');
+
+    function openInvitation() {
+      coverScreen.classList.add('opening');
+      setTimeout(() => {
+        coverScreen.classList.add('hidden');
+        mainInvitation.classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        triggerReveals();
+      }, 950);
+    }
+
+    function closeInvitation() {
+      mainInvitation.classList.remove('visible');
+      coverScreen.classList.remove('hidden', 'opening');
+    }
+
+    // Scroll Reveal Observer
+    function triggerReveals() {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, { threshold: 0.12 });
+
+      reveals.forEach(el => observer.observe(el));
+    }
+
+    // Live Countdown to 26 December 2026, 2:00 PM (BST +06:00)
+    const targetDate = new Date('2026-12-26T14:00:00+06:00').getTime();
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = Math.max(0, targetDate - now);
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Toast Helper
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    // Copy Venue Address
+    function copyVenueAddress() {
+      const text = "Shefali Convention Center (Hotel Upohar) — RX5Q+P97, Santahar - Bogra Rd, Santahar Pouroshova, Bangladesh";
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("Venue address copied!");
+      });
+    }
+
+    // Share Invitation
+    function shareInvitation() {
+      const shareText = "You are cordially invited to the Nikah Ceremony of Fariha Ahammed & Arib Abrar Nasif on Saturday, 26 December 2026 at Shefali Convention Center (Hotel Upohar), Santahar, Bogura.";
+      if (navigator.share) {
+        navigator.share({
+          title: "Nikah Invitation — Fariha & Arib",
+          text: shareText,
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(shareText + " " + window.location.href).then(() => {
+          showToast("Invitation message copied to share!");
+        });
+      }
+    }
+
+    // Download .ics Calendar Event
+    function downloadCalendar() {
+      const icsContent = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Fariha & Arib Nikah//EN",
+        "BEGIN:VEVENT",
+        "DTSTART:20261226T080000Z",
+        "DTEND:20261226T110000Z",
+        "SUMMARY:Nikah Ceremony — Fariha Ahammed & Arib Abrar Nasif",
+        "DESCRIPTION:Sacred Nikah Ceremony of Fariha Ahammed and Arib Abrar Nasif.",
+        "LOCATION:Shefali Convention Center (Hotel Upohar), RX5Q+P97, Santahar - Bogra Rd, Santahar Pouroshova, Bangladesh",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Fariha-Arib-Nikah.ics";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast("Calendar invite downloaded!");
+    }
+  </script>
+</body>
+</html>
